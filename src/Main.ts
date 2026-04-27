@@ -2,6 +2,7 @@ import { CanvasManager } from "./CanvasManager";
 import {Grayscale} from "./utils/Firlters/Grayscale";
 import {Negative} from "./utils/Firlters/Negative";
 import {Sepia} from "./utils/Firlters/Sepia";
+import {Binarization} from "./utils/Firlters/Binarization";
 
 const canvas = document.getElementById("myCanvas") as HTMLCanvasElement;
 const manager = new CanvasManager(canvas);
@@ -14,6 +15,8 @@ const btnClear = document.getElementById("btnClear") as HTMLButtonElement;
 const btnGrayscale = document.getElementById("btnGrayscale") as HTMLButtonElement;
 const btnNegative = document.getElementById("btnNegative") as HTMLButtonElement;
 const btnSepia = document.getElementById("btnSepia") as HTMLButtonElement;
+const btnBinarization = document.getElementById("btnBinarization") as HTMLButtonElement;
+
 
 
 btnPencil.addEventListener("click", () => {
@@ -61,3 +64,8 @@ btnNegative.addEventListener("click", () => {
 btnSepia.addEventListener("click", () => {
     manager.applyFilter(new Sepia());
 });
+
+btnBinarization.addEventListener("click", () => {
+    manager.applyFilter(new Binarization());
+});
+
