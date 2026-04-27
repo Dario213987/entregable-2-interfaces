@@ -1,4 +1,5 @@
 import { CanvasManager } from "./CanvasManager";
+import {Grayscale} from "./utils/Firlters/Grayscale";
 
 const canvas = document.getElementById("myCanvas") as HTMLCanvasElement;
 const manager = new CanvasManager(canvas);
@@ -8,6 +9,7 @@ const btnEraser = document.getElementById("btnEraser") as HTMLButtonElement;
 const colorPicker = document.getElementById("colorPicker") as HTMLInputElement;
 const fileInput = document.getElementById("fileInput") as HTMLInputElement;
 const btnClear = document.getElementById("btnClear") as HTMLButtonElement;
+const btnGrayscale = document.getElementById("btnGrayscale") as HTMLButtonElement;
 
 btnPencil.addEventListener("click", () => {
     manager.setColor(colorPicker.value);
@@ -41,4 +43,8 @@ fileInput.addEventListener("change", () => {
     };
 
     reader.readAsDataURL(file);
+});
+
+btnGrayscale.addEventListener("click", () => {
+    manager.applyFilter(new Grayscale());
 });

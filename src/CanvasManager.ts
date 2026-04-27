@@ -1,4 +1,5 @@
 import {Pen} from "./utils/Pen";
+import {Filter} from "./utils/Firlters/Filter";
 
 export class CanvasManager {
     private canvas: HTMLCanvasElement;
@@ -57,6 +58,13 @@ export class CanvasManager {
         const offsetY = (this.canvas.height - scaledHeight) / 2;
 
         this.ctx.drawImage(image, offsetX, offsetY, scaledWidth, scaledHeight);
+    }
+
+
+    applyFilter(filter: Filter): void {
+        const imageData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
+        const filtered = filter.apply(imageData);
+        this.ctx.putImageData(filtered, 0, 0);
     }
 
 
