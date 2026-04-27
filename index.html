@@ -9,10 +9,12 @@
 </head>
 <body>
 <div class="container mt-4">
-    <div class="mb-2">
-        <button id="btnPencil">Lápiz</button>
-        <button id="btnEraser">Goma</button>
+    <div class="mb-2 d-flex gap-2 align-items-center">
+        <button id="btnPencil" class="btn btn-secondary">Lápiz</button>
+        <button id="btnEraser" class="btn btn-secondary">Goma</button>
         <input type="color" id="colorPicker" value="#000000">
+        <button id="btnClear" class="btn btn-danger">Limpiar</button>
+        <input type="file" id="fileInput" accept="image/*" class="form-control w-auto">
     </div>
     <canvas id="myCanvas" width="800" height="600" style="border: 1px solid black;"></canvas>
 </div>

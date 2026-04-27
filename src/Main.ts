@@ -6,6 +6,8 @@ const manager = new CanvasManager(canvas);
 const btnPencil = document.getElementById("btnPencil") as HTMLButtonElement;
 const btnEraser = document.getElementById("btnEraser") as HTMLButtonElement;
 const colorPicker = document.getElementById("colorPicker") as HTMLInputElement;
+const fileInput = document.getElementById("fileInput") as HTMLInputElement;
+const btnClear = document.getElementById("btnClear") as HTMLButtonElement;
 
 btnPencil.addEventListener("click", () => {
     manager.setColor(colorPicker.value);
@@ -22,3 +24,21 @@ colorPicker.addEventListener("input", () => {
     manager.setSize(4);
 });
 
+btnClear.addEventListener("click", () => {
+    manager.clearCanvas();
+});
+
+fileInput.addEventListener("change", () => {
+    const file = fileInput.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => manager.drawImage(img);
+        img.src = e.target?.result as string;
+    };
+
+    reader.readAsDataURL(file);
+});

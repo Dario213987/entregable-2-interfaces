@@ -45,6 +45,27 @@ export class CanvasManager {
         });
     }
 
+    drawImage(image: HTMLImageElement): void {
+        const scale = Math.min(
+            this.canvas.width / image.width,
+            this.canvas.height / image.height
+        );
+
+        const scaledWidth = image.width * scale;
+        const scaledHeight = image.height * scale;
+        const offsetX = (this.canvas.width - scaledWidth) / 2;
+        const offsetY = (this.canvas.height - scaledHeight) / 2;
+
+        this.ctx.drawImage(image, offsetX, offsetY, scaledWidth, scaledHeight);
+    }
+
+
+    clearCanvas(): void {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.fillStyle = "white";
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+
     setColor(color: string): void {
         this.currentColor = color;
     }
