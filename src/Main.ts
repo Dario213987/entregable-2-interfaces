@@ -1,5 +1,7 @@
 import { CanvasManager } from "./CanvasManager";
 import {Grayscale} from "./utils/Firlters/Grayscale";
+import {Negative} from "./utils/Firlters/Negative";
+import {Sepia} from "./utils/Firlters/Sepia";
 
 const canvas = document.getElementById("myCanvas") as HTMLCanvasElement;
 const manager = new CanvasManager(canvas);
@@ -10,6 +12,9 @@ const colorPicker = document.getElementById("colorPicker") as HTMLInputElement;
 const fileInput = document.getElementById("fileInput") as HTMLInputElement;
 const btnClear = document.getElementById("btnClear") as HTMLButtonElement;
 const btnGrayscale = document.getElementById("btnGrayscale") as HTMLButtonElement;
+const btnNegative = document.getElementById("btnNegative") as HTMLButtonElement;
+const btnSepia = document.getElementById("btnSepia") as HTMLButtonElement;
+
 
 btnPencil.addEventListener("click", () => {
     manager.setColor(colorPicker.value);
@@ -47,4 +52,12 @@ fileInput.addEventListener("change", () => {
 
 btnGrayscale.addEventListener("click", () => {
     manager.applyFilter(new Grayscale());
+});
+
+btnNegative.addEventListener("click", () => {
+    manager.applyFilter(new Negative());
+});
+
+btnSepia.addEventListener("click", () => {
+    manager.applyFilter(new Sepia());
 });
