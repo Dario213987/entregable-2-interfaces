@@ -3,6 +3,10 @@ import {Grayscale} from "./utils/Firlters/Grayscale";
 import {Negative} from "./utils/Firlters/Negative";
 import {Sepia} from "./utils/Firlters/Sepia";
 import {Binarization} from "./utils/Firlters/Binarization";
+import {Brightness} from "./utils/Firlters/Brightness";
+import {Saturation} from "./utils/Firlters/Saturation";
+import {Blur} from "./utils/Firlters/Blur";
+import {EdgeDetection} from "./utils/Firlters/EdgeDetection";
 
 const canvas = document.getElementById("myCanvas") as HTMLCanvasElement;
 const manager = new CanvasManager(canvas);
@@ -16,6 +20,12 @@ const btnGrayscale = document.getElementById("btnGrayscale") as HTMLButtonElemen
 const btnNegative = document.getElementById("btnNegative") as HTMLButtonElement;
 const btnSepia = document.getElementById("btnSepia") as HTMLButtonElement;
 const btnBinarization = document.getElementById("btnBinarization") as HTMLButtonElement;
+const btnBlur = document.getElementById("btnBlur") as HTMLButtonElement;
+const btnEdge = document.getElementById("btnEdge") as HTMLButtonElement;
+const btnBrightness = document.getElementById("btnBrightness") as HTMLButtonElement;
+const brightnessSlider = document.getElementById("brightnessSlider") as HTMLInputElement;
+const btnSaturation = document.getElementById("btnSaturation") as HTMLButtonElement;
+const saturationSlider = document.getElementById("saturationSlider") as HTMLInputElement;
 
 
 
@@ -68,4 +78,23 @@ btnSepia.addEventListener("click", () => {
 btnBinarization.addEventListener("click", () => {
     manager.applyFilter(new Binarization());
 });
+
+btnBrightness.addEventListener("click", () => {
+    const value = parseInt(brightnessSlider.value);
+    manager.applyFilter(new Brightness(value));
+});
+
+btnSaturation.addEventListener("click", () => {
+    const value = parseInt(saturationSlider.value);
+    manager.applyFilter(new Saturation(value));
+});
+
+btnBlur.addEventListener("click", () => {
+    manager.applyFilter(new Blur());
+});
+
+btnEdge.addEventListener("click", () => {
+    manager.applyFilter(new EdgeDetection());
+});
+
 

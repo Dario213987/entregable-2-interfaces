@@ -19,6 +19,23 @@
         <button id="btnNegative" class="btn btn-secondary">Negativo</button>
         <button id="btnSepia" class="btn btn-secondary">Sepia</button>
         <button id="btnBinarization" class="btn btn-secondary">Binarización</button>
+        <button id="btnBlur" class="btn btn-secondary">Blur</button>
+        <button id="btnEdge" class="btn btn-secondary">Edge</button>
+
+
+        <div class="d-flex align-items-center gap-2">
+            <label for="brightnessSlider">Brillo</label>
+            <input type="range" id="brightnessSlider" min="-255" max="255" value="0">
+            <button id="btnBrightness" class="btn btn-secondary">Aplicar Brillo</button>
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+            <label for="saturationSlider">Saturación</label>
+            <input type="range" id="saturationSlider" min="-100" max="100" value="0">
+            <button id="btnSaturation" class="btn btn-secondary">Aplicar Saturación</button>
+        </div>
+
+
     </div>
     <canvas id="myCanvas" width="800" height="600" style="border: 1px solid black;"></canvas>
 </div>

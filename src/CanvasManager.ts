@@ -17,6 +17,9 @@ export class CanvasManager {
         if (!ctx) throw new Error("Something went wrong");
 
         this.ctx = ctx;
+
+        this.ctx.fillStyle = "white";
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
         this.initEvents();
     }
 
