@@ -1,7 +1,8 @@
 import {Pen} from "./utils/Pen";
 import {Filter} from "./utils/Firlters/Filter";
+import {CanvasManager} from "./utils/Interfaces/CanvasManager";
 
-export class CanvasManager {
+export class CanvasManagerImpl implements CanvasManager{
     private canvas: HTMLCanvasElement;
     private ctx: CanvasRenderingContext2D;
 
@@ -41,6 +42,7 @@ export class CanvasManager {
         this.canvas.addEventListener("mouseup", () => {
             this.isDrawing = false;
             this.currentPen = null;
+            this.onStrokeEnd?.();
         });
 
         this.canvas.addEventListener("mouseleave", () => {
@@ -91,5 +93,11 @@ export class CanvasManager {
             x: e.clientX - rect.left,
             y: e.clientY - rect.top
         };
+    }
+
+    private onStrokeEnd: (() => void) | null = null;
+
+    setOnStrokeEnd(callback: () => void): void {
+        this.onStrokeEnd = callback;
     }
 }

@@ -1,4 +1,4 @@
-import { CanvasManager } from "./CanvasManager";
+import { CanvasManagerImpl } from "./CanvasManagerImpl";
 import {Grayscale} from "./utils/Firlters/Grayscale";
 import {Negative} from "./utils/Firlters/Negative";
 import {Sepia} from "./utils/Firlters/Sepia";
@@ -7,9 +7,10 @@ import {Brightness} from "./utils/Firlters/Brightness";
 import {Saturation} from "./utils/Firlters/Saturation";
 import {Blur} from "./utils/Firlters/Blur";
 import {EdgeDetection} from "./utils/Firlters/EdgeDetection";
+import {HistoryManager} from "./utils/HistoryManger";
 
 const canvas = document.getElementById("myCanvas") as HTMLCanvasElement;
-const manager = new CanvasManager(canvas);
+const manager = new HistoryManager(new CanvasManagerImpl(canvas), canvas);
 
 const btnPencil = document.getElementById("btnPencil") as HTMLButtonElement;
 const btnEraser = document.getElementById("btnEraser") as HTMLButtonElement;
@@ -27,6 +28,11 @@ const brightnessSlider = document.getElementById("brightnessSlider") as HTMLInpu
 const btnSaturation = document.getElementById("btnSaturation") as HTMLButtonElement;
 const saturationSlider = document.getElementById("saturationSlider") as HTMLInputElement;
 
+const btnUndo = document.getElementById("btnUndo") as HTMLButtonElement;
+const btnRedo = document.getElementById("btnRedo") as HTMLButtonElement;
+
+btnUndo.addEventListener("click", () => manager.undo());
+btnRedo.addEventListener("click", () => manager.redo());
 
 
 btnPencil.addEventListener("click", () => {
