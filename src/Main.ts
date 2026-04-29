@@ -23,17 +23,17 @@ const btnSepia = document.getElementById("btnSepia") as HTMLButtonElement;
 const btnBinarization = document.getElementById("btnBinarization") as HTMLButtonElement;
 const btnBlur = document.getElementById("btnBlur") as HTMLButtonElement;
 const btnEdge = document.getElementById("btnEdge") as HTMLButtonElement;
-const btnBrightness = document.getElementById("btnBrightness") as HTMLButtonElement;
-const brightnessSlider = document.getElementById("brightnessSlider") as HTMLInputElement;
-const btnSaturation = document.getElementById("btnSaturation") as HTMLButtonElement;
-const saturationSlider = document.getElementById("saturationSlider") as HTMLInputElement;
-
 const btnUndo = document.getElementById("btnUndo") as HTMLButtonElement;
 const btnRedo = document.getElementById("btnRedo") as HTMLButtonElement;
+const brightnessSlider = document.getElementById("brightnessSlider") as HTMLInputElement;
+const brightnessVal = document.getElementById("brightnessVal") as HTMLElement;
+const btnBrightness = document.getElementById("btnBrightness") as HTMLButtonElement;
+const saturationSlider = document.getElementById("saturationSlider") as HTMLInputElement;
+const saturationVal = document.getElementById("saturationVal") as HTMLElement;
+const btnSaturation = document.getElementById("btnSaturation") as HTMLButtonElement;
 
 btnUndo.addEventListener("click", () => manager.undo());
 btnRedo.addEventListener("click", () => manager.redo());
-
 
 btnPencil.addEventListener("click", () => {
     manager.setColor(colorPicker.value);
@@ -50,57 +50,39 @@ colorPicker.addEventListener("input", () => {
     manager.setSize(4);
 });
 
-btnClear.addEventListener("click", () => {
-    manager.clearCanvas();
-});
+btnClear.addEventListener("click", () => manager.clearCanvas());
 
 fileInput.addEventListener("change", () => {
     const file = fileInput.files?.[0];
     if (!file) return;
-
     const reader = new FileReader();
-
     reader.onload = (e) => {
         const img = new Image();
         img.onload = () => manager.drawImage(img);
         img.src = e.target?.result as string;
     };
-
     reader.readAsDataURL(file);
 });
 
-btnGrayscale.addEventListener("click", () => {
-    manager.applyFilter(new Grayscale());
-});
+btnGrayscale.addEventListener("click", () => manager.applyFilter(new Grayscale()));
+btnNegative.addEventListener("click", () => manager.applyFilter(new Negative()));
+btnSepia.addEventListener("click", () => manager.applyFilter(new Sepia()));
+btnBinarization.addEventListener("click", () => manager.applyFilter(new Binarization()));
+btnBlur.addEventListener("click", () => manager.applyFilter(new Blur()));
+btnEdge.addEventListener("click", () => manager.applyFilter(new EdgeDetection()));
 
-btnNegative.addEventListener("click", () => {
-    manager.applyFilter(new Negative());
-});
-
-btnSepia.addEventListener("click", () => {
-    manager.applyFilter(new Sepia());
-});
-
-btnBinarization.addEventListener("click", () => {
-    manager.applyFilter(new Binarization());
+brightnessSlider.addEventListener("input", () => {
+    brightnessVal.textContent = brightnessSlider.value;
 });
 
 btnBrightness.addEventListener("click", () => {
-    const value = parseInt(brightnessSlider.value);
-    manager.applyFilter(new Brightness(value));
+    manager.applyFilter(new Brightness(parseInt(brightnessSlider.value)));
+});
+
+saturationSlider.addEventListener("input", () => {
+    saturationVal.textContent = saturationSlider.value;
 });
 
 btnSaturation.addEventListener("click", () => {
-    const value = parseInt(saturationSlider.value);
-    manager.applyFilter(new Saturation(value));
+    manager.applyFilter(new Saturation(parseInt(saturationSlider.value)));
 });
-
-btnBlur.addEventListener("click", () => {
-    manager.applyFilter(new Blur());
-});
-
-btnEdge.addEventListener("click", () => {
-    manager.applyFilter(new EdgeDetection());
-});
-
-

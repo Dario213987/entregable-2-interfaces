@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-light d-flex flex-column" style="height: 100vh; overflow: hidden;">
-
 <header class="d-flex justify-content-between align-items-center p-3 border-bottom">
     <h2 class="mb-0">[LOGO] Paint</h2>
     <div class="d-flex gap-2">
@@ -17,10 +16,9 @@
         <button id="btnRedo" class="btn btn-secondary"><i class="fa-solid fa-rotate-right me-1"></i>Redo</button>
     </div>
 </header>
-
 <main class="flex-grow-1 overflow-hidden d-flex w-100">
     <div class="d-flex flex-grow-1 h-100 overflow-hidden">
-        <div class="d-flex flex-column gap-2 p-2 border-end">
+        <div class="d-flex flex-column gap-2 p-2 border-end" style="width: 160px; overflow-y: auto;">
             <button id="btnPencil" class="btn btn-secondary d-flex justify-content-center align-items-center p-2">
                 <i class="fa-solid fa-pencil"></i>
             </button>
@@ -32,6 +30,9 @@
                 <i class="fa-solid fa-folder-open"></i>
             </label>
             <input type="file" id="fileInput" accept="image/*" class="d-none">
+
+            <hr class="my-0">
+
             <button id="btnGrayscale" class="btn btn-secondary d-flex justify-content-center align-items-center p-2">
                 <i class="fa-solid fa-circle-half-stroke"></i>
             </button>
@@ -50,12 +51,26 @@
             <button id="btnEdge" class="btn btn-secondary d-flex justify-content-center align-items-center p-2">
                 <i class="fa-solid fa-vector-square"></i>
             </button>
-            <button id="btnBrightness" class="btn btn-secondary d-flex justify-content-center align-items-center p-2">
-                <i class="fa-solid fa-sun"></i>
-            </button>
-            <button id="btnSaturation" class="btn btn-secondary d-flex justify-content-center align-items-center p-2">
-                <i class="fa-solid fa-palette"></i>
-            </button>
+
+            <hr class="my-0">
+
+            <div class="d-flex flex-column gap-1">
+                <div class="d-flex justify-content-between">
+                    <small class="fw-bold"><i class="fa-solid fa-sun"></i></small>
+                    <small id="brightnessVal">0</small>
+                </div>
+                <input type="range" id="brightnessSlider" class="form-range" min="-100" max="100" value="0">
+                <button id="btnBrightness" class="btn btn-sm btn-secondary">Aplicar</button>
+            </div>
+
+            <div class="d-flex flex-column gap-1">
+                <div class="d-flex justify-content-between">
+                    <small class="fw-bold"><i class="fa-solid fa-palette"></i></small>
+                    <small id="saturationVal">0</small>
+                </div>
+                <input type="range" id="saturationSlider" class="form-range" min="-100" max="100" value="0">
+                <button id="btnSaturation" class="btn btn-sm btn-secondary">Aplicar</button>
+            </div>
 
             <button id="btnClear" class="btn btn-danger d-flex justify-content-center align-items-center p-2 mt-auto">
                 <i class="fa-solid fa-trash"></i>
