@@ -5,57 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TP2 Canvas - Rauch 2026</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-light w-100 h-100">
+<body class="bg-light d-flex flex-column" style="height: 100vh; overflow: hidden;">
 
 <header class="d-flex justify-content-between align-items-center p-3 border-bottom">
     <h2 class="mb-0">[LOGO] Paint</h2>
     <div class="d-flex gap-2">
-        <button id="btnUndo" class="btn btn-secondary">Undo</button>
-        <button id="btnRedo" class="btn btn-secondary">Redo</button>
+        <button id="btnUndo" class="btn btn-secondary"><i class="fa-solid fa-rotate-left me-1"></i>Undo</button>
+        <button id="btnRedo" class="btn btn-secondary"><i class="fa-solid fa-rotate-right me-1"></i>Redo</button>
     </div>
 </header>
 
-<div class="d-flex" style="height: calc(100vh - 70px); overflow: hidden;">
+<main class="flex-grow-1 overflow-hidden d-flex w-100">
+    <div class="d-flex flex-grow-1 h-100 overflow-hidden">
+        <div class="d-flex flex-column gap-2 p-2 border-end">
+            <button id="btnPencil" class="btn btn-secondary d-flex justify-content-center align-items-center p-2">
+                <i class="fa-solid fa-pencil"></i>
+            </button>
+            <input type="color" id="colorPicker" value="#000000" class="form-control form-control-color">
+            <button id="btnEraser" class="btn btn-secondary d-flex justify-content-center align-items-center p-2">
+                <i class="fa-solid fa-eraser"></i>
+            </button>
+            <label for="fileInput" class="btn btn-secondary d-flex justify-content-center align-items-center p-2">
+                <i class="fa-solid fa-folder-open"></i>
+            </label>
+            <input type="file" id="fileInput" accept="image/*" class="d-none">
+            <button id="btnGrayscale" class="btn btn-secondary d-flex justify-content-center align-items-center p-2">
+                <i class="fa-solid fa-circle-half-stroke"></i>
+            </button>
+            <button id="btnNegative" class="btn btn-secondary d-flex justify-content-center align-items-center p-2">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </button>
+            <button id="btnSepia" class="btn btn-secondary d-flex justify-content-center align-items-center p-2">
+                <i class="fa-solid fa-film"></i>
+            </button>
+            <button id="btnBinarization" class="btn btn-secondary d-flex justify-content-center align-items-center p-2">
+                <i class="fa-solid fa-circle-dot"></i>
+            </button>
+            <button id="btnBlur" class="btn btn-secondary d-flex justify-content-center align-items-center p-2">
+                <i class="fa-solid fa-eye-slash"></i>
+            </button>
+            <button id="btnEdge" class="btn btn-secondary d-flex justify-content-center align-items-center p-2">
+                <i class="fa-solid fa-vector-square"></i>
+            </button>
+            <button id="btnBrightness" class="btn btn-secondary d-flex justify-content-center align-items-center p-2">
+                <i class="fa-solid fa-sun"></i>
+            </button>
+            <button id="btnSaturation" class="btn btn-secondary d-flex justify-content-center align-items-center p-2">
+                <i class="fa-solid fa-palette"></i>
+            </button>
 
-    <div class="d-flex flex-column gap-2 p-2 border-end" style="width: 200px; overflow-y: auto;">
-        <button id="btnPencil" class="btn btn-secondary">Lápiz</button>
-        <button id="btnEraser" class="btn btn-secondary">Goma</button>
-        <input type="color" id="colorPicker" value="#000000" class="form-control form-control-color">
-        <button id="btnClear" class="btn btn-danger">Limpiar</button>
-        <input type="file" id="fileInput" accept="image/*" class="form-control">
-
-        <hr class="my-1">
-
-        <button id="btnGrayscale" class="btn btn-secondary">Blanco y Negro</button>
-        <button id="btnNegative" class="btn btn-secondary">Negativo</button>
-        <button id="btnSepia" class="btn btn-secondary">Sepia</button>
-        <button id="btnBinarization" class="btn btn-secondary">Binarización</button>
-        <button id="btnBlur" class="btn btn-secondary">Blur</button>
-        <button id="btnEdge" class="btn btn-secondary">Edge</button>
-
-        <hr class="my-1">
-
-        <div class="d-flex flex-column gap-1">
-            <label for="brightnessSlider" class="form-label mb-0">Brillo</label>
-            <input type="range" id="brightnessSlider" class="form-range" min="-255" max="255" value="0">
-            <button id="btnBrightness" class="btn btn-secondary">Aplicar Brillo</button>
+            <button id="btnClear" class="btn btn-danger d-flex justify-content-center align-items-center p-2 mt-auto">
+                <i class="fa-solid fa-trash"></i>
+            </button>
         </div>
-
-        <div class="d-flex flex-column gap-1">
-            <label for="saturationSlider" class="form-label mb-0">Saturación</label>
-            <input type="range" id="saturationSlider" class="form-range" min="-100" max="100" value="0">
-            <button id="btnSaturation" class="btn btn-secondary">Aplicar Saturación</button>
+        <div class="flex-grow-1 d-flex align-items-center justify-content-center overflow-hidden h-100 w-100">
+            <canvas id="myCanvas" width="800" height="600" style="border: 1px solid black;"></canvas>
         </div>
     </div>
-
-    <div class="flex-grow-1 d-flex align-items-center justify-content-center overflow-hidden">
-        <canvas id="myCanvas" width="800" height="600" style="border: 1px solid black;"></canvas>
-    </div>
-
-</div>
-
+</main>
 <script type="module" src="/src/Main.ts"></script>
 </body>
 </html>
