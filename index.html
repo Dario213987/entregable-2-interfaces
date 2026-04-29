@@ -6,62 +6,73 @@
     <title>TP2 Canvas - Rauch 2026</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-light d-flex flex-column" style="height: 100vh; overflow: hidden;">
-<header class="d-flex justify-content-between align-items-center p-3 border-bottom">
-    <h2 class="mb-0">[LOGO] Paint</h2>
+<body class="d-flex flex-column" style="height: 100vh; overflow: hidden;">
+<header class="d-flex justify-content-between align-items-center p-3 border-bottom bg-white shadow-sm">
+    <h2 class="mb-0 fw-bold"><i class="fa-solid fa-palette"></i> Paint</h2>
     <div class="d-flex gap-2">
-        <button id="btnSave" class="btn btn-secondary"><i class="fa-solid fa-floppy-disk"></i></button>
-        <button id="btnUndo" class="btn btn-secondary"><i class="fa-solid fa-rotate-left me-1"></i></button>
-        <button id="btnRedo" class="btn btn-secondary"><i class="fa-solid fa-rotate-right me-1"></i></button>
+        <button id="btnSave" class="btn btn-secondary" title="Guardar imagen"><i class="fa-solid fa-floppy-disk"></i></button>
+        <button id="btnUndo" class="btn btn-secondary" title="Deshacer"><i class="fa-solid fa-rotate-left me-1"></i></button>
+        <button id="btnRedo" class="btn btn-secondary" title="Rehacer"><i class="fa-solid fa-rotate-right me-1"></i></button>
     </div>
 </header>
 <main class="flex-grow-1 overflow-hidden d-flex w-100">
     <div class="d-flex flex-grow-1 h-100 overflow-hidden">
-        <div class="d-flex flex-column gap-2 p-2 border-end" style="width: 160px; overflow-y: auto;">
-            <button id="btnPencil" class="btn btn-secondary d-flex justify-content-center align-items-center p-2">
-                <i class="fa-solid fa-pencil"></i>
-            </button>
-            <input type="color" id="colorPicker" value="#000000" class="form-control form-control-color">
-            <button id="btnEraser" class="btn btn-secondary d-flex justify-content-center align-items-center p-2">
+        <div class="d-flex flex-column gap-2 p-2 border-end bg-white shadow-sm" style="width: 160px; overflow-y: auto;">
+            <div class="d-flex">
+                <button id="btnPencil" class="btn btn-secondary d-flex justify-content-center align-items-center w-100 p-2" title="Lápiz">
+                    <i class="fa-solid fa-pencil"></i>
+                </button>
+                <input type="color" id="colorPicker" value="#000000" class="form-control form-control-color" title="Seleccionar color">
+            </div>
+
+            <button id="btnEraser" class="btn btn-secondary d-flex justify-content-center align-items-center p-2" title="Goma">
                 <i class="fa-solid fa-eraser"></i>
             </button>
-            <label for="fileInput" class="btn btn-secondary d-flex justify-content-center align-items-center p-2">
+            <label for="fileInput" class="btn btn-secondary d-flex justify-content-center align-items-center p-2" title="Abrir imagen">
                 <i class="fa-solid fa-folder-open"></i>
             </label>
             <input type="file" id="fileInput" accept="image/*" class="d-none">
 
-            <hr class="my-0">
+            <div class="d-flex align-items-center gap-2 my-1">
+                <hr class="flex-grow-1 my-0">
+                <small class="text-muted fw-semibold">Filtros</small>
+                <hr class="flex-grow-1 my-0">
+            </div>
 
-            <button id="btnGrayscale" class="btn btn-secondary d-flex justify-content-center align-items-center p-2">
+            <button id="btnGrayscale" class="btn btn-secondary d-flex justify-content-center align-items-center p-2" title="Escala de grises">
                 <i class="fa-solid fa-circle-half-stroke"></i>
             </button>
-            <button id="btnNegative" class="btn btn-secondary d-flex justify-content-center align-items-center p-2">
+            <button id="btnNegative" class="btn btn-secondary d-flex justify-content-center align-items-center p-2" title="Negativo">
                 <i class="fa-solid fa-wand-magic-sparkles"></i>
             </button>
-            <button id="btnSepia" class="btn btn-secondary d-flex justify-content-center align-items-center p-2">
+            <button id="btnSepia" class="btn btn-secondary d-flex justify-content-center align-items-center p-2" title="Filtro sepia">
                 <i class="fa-solid fa-film"></i>
             </button>
-            <button id="btnBinarization" class="btn btn-secondary d-flex justify-content-center align-items-center p-2">
+            <button id="btnBinarization" class="btn btn-secondary d-flex justify-content-center align-items-center p-2" title="Binarización">
                 <i class="fa-solid fa-circle-dot"></i>
             </button>
-            <button id="btnBlur" class="btn btn-secondary d-flex justify-content-center align-items-center p-2">
+            <button id="btnBlur" class="btn btn-secondary d-flex justify-content-center align-items-center p-2" title=" Desenfoque">
                 <i class="fa-solid fa-eye-slash"></i>
             </button>
-            <button id="btnEdge" class="btn btn-secondary d-flex justify-content-center align-items-center p-2">
+            <button id="btnEdge" class="btn btn-secondary d-flex justify-content-center align-items-center p-2" title="Detección de bordes">
                 <i class="fa-solid fa-vector-square"></i>
             </button>
 
-            <hr class="my-0">
+            <hr class="my-3">
+
 
             <div class="d-flex flex-column gap-1">
                 <div class="d-flex justify-content-between">
                     <small class="fw-bold"><i class="fa-solid fa-sun"></i></small>
                     <small id="brightnessVal">0</small>
                 </div>
-                <input type="range" id="brightnessSlider" class="form-range" min="-100" max="100" value="0">
-                <button id="btnBrightness" class="btn btn-sm btn-secondary">Aplicar</button>
+                <input type="range" id="brightnessSlider" class="form-range" min="-100" max="100" value="0" title="Ajustar brillo">
+                <button id="btnBrightness" class="btn btn-sm btn-secondary" title="Aplicar brillo">Aplicar</button>
             </div>
 
             <div class="d-flex flex-column gap-1">
@@ -69,16 +80,16 @@
                     <small class="fw-bold"><i class="fa-solid fa-palette"></i></small>
                     <small id="saturationVal">0</small>
                 </div>
-                <input type="range" id="saturationSlider" class="form-range" min="-100" max="100" value="0">
-                <button id="btnSaturation" class="btn btn-sm btn-secondary">Aplicar</button>
+                <input type="range" id="saturationSlider" class="form-range" min="-100" max="100" value="0" title="Ajustar saturación">
+                <button id="btnSaturation" class="btn btn-sm btn-secondary" title="Aplicar saturacion">Aplicar</button>
             </div>
 
-            <button id="btnClear" class="btn btn-danger d-flex justify-content-center align-items-center p-2 mt-auto">
+            <button id="btnClear" class="btn btn-danger d-flex justify-content-center align-items-center p-2 mt-auto" title="Limpiar lienzo ">
                 <i class="fa-solid fa-trash"></i>
             </button>
         </div>
-        <div class="flex-grow-1 d-flex align-items-center justify-content-center overflow-hidden h-100 w-100">
-            <canvas id="myCanvas" width="800" height="600" style="border: 1px solid black;"></canvas>
+        <div class="flex-grow-1 d-flex align-items-center justify-content-center overflow-hidden h-100 w-100 bg-light">
+            <canvas id="canvas" width="800" height="600" class="shadow"></canvas>
         </div>
     </div>
 </main>

@@ -9,7 +9,7 @@ import {Blur} from "./utils/Firlters/Blur";
 import {EdgeDetection} from "./utils/Firlters/EdgeDetection";
 import {HistoryManager} from "./utils/HistoryManger";
 
-const canvas = document.getElementById("myCanvas") as HTMLCanvasElement;
+const canvas = document.getElementById("canvas") as HTMLCanvasElement;
 const manager = new HistoryManager(new CanvasManagerImpl(canvas), canvas);
 
 const btnPencil = document.getElementById("btnPencil") as HTMLButtonElement;
@@ -93,4 +93,12 @@ btnSave.addEventListener("click", () => {
     link.download = crypto.randomUUID() + ".png";
     link.href = canvas.toDataURL("image/png");
     link.click();
+});
+
+btnPencil.addEventListener('click', () => {
+    canvas.dataset.tool = 'pencil';
+});
+
+btnEraser.addEventListener('click', () => {
+    canvas.dataset.tool = 'eraser';
 });

@@ -1,0 +1,61 @@
+:root {
+    --primary:         #f97316;
+    --primary-light:   #fed7aa;
+    --secondary:       #7c3aed;
+    --secondary-light: #ddd6fe;
+    --border:          #e5e7eb;
+    --text-muted:      #6b7280;
+}
+body {
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+header h2 {
+    color: var(--primary);
+}
+.btn-secondary {
+    background-color: #f9fafb;
+    border-color: var(--border);
+    color: var(--text-muted);
+}
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+    background-color: var(--primary-light);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+#btnGrayscale:hover, #btnNegative:hover, #btnSepia:hover,
+#btnBinarization:hover, #btnBlur:hover, #btnEdge:hover,
+#btnBrightness:hover, #btnSaturation:hover {
+    background-color: var(--secondary-light);
+    border-color: var(--secondary);
+    color: var(--secondary);
+}
+.btn-danger {
+    background-color: #f9fafb;
+    border-color: var(--border);
+    color: var(--text-muted);
+}
+.btn-danger:hover,
+.btn-danger:focus-visible {
+    background-color: #fee2e2;
+    border-color: #ef4444;
+    color: #ef4444;
+}
+#btnSave:hover, #btnUndo:hover, #btnRedo:hover {
+    background-color: var(--primary-light);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+.form-range {
+    accent-color: var(--secondary) !important;
+}
+
+
+#canvas[data-tool="pencil"] {
+    cursor: crosshair;
+}
+#canvas[data-tool="eraser"] {
+    cursor: cell;
+}
