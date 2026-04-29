@@ -102,3 +102,8 @@ btnPencil.addEventListener('click', () => {
 btnEraser.addEventListener('click', () => {
     canvas.dataset.tool = 'eraser';
 });
+
+document.addEventListener("keydown", (e) => {
+    if (e.ctrlKey && e.key === "z") manager.undo();
+    if (e.ctrlKey && e.key === "y") manager.redo();
+});
