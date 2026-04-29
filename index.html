@@ -7,14 +7,27 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-<div class="container mt-4">
-    <div class="mb-2 d-flex gap-2 align-items-center">
+<body class="bg-light w-100 h-100">
+
+<header class="d-flex justify-content-between align-items-center p-3 border-bottom">
+    <h2 class="mb-0">[LOGO] Paint</h2>
+    <div class="d-flex gap-2">
+        <button id="btnUndo" class="btn btn-secondary">Undo</button>
+        <button id="btnRedo" class="btn btn-secondary">Redo</button>
+    </div>
+</header>
+
+<div class="d-flex" style="height: calc(100vh - 70px); overflow: hidden;">
+
+    <div class="d-flex flex-column gap-2 p-2 border-end" style="width: 200px; overflow-y: auto;">
         <button id="btnPencil" class="btn btn-secondary">Lápiz</button>
         <button id="btnEraser" class="btn btn-secondary">Goma</button>
-        <input type="color" id="colorPicker" value="#000000">
+        <input type="color" id="colorPicker" value="#000000" class="form-control form-control-color">
         <button id="btnClear" class="btn btn-danger">Limpiar</button>
-        <input type="file" id="fileInput" accept="image/*" class="form-control w-auto">
+        <input type="file" id="fileInput" accept="image/*" class="form-control">
+
+        <hr class="my-1">
+
         <button id="btnGrayscale" class="btn btn-secondary">Blanco y Negro</button>
         <button id="btnNegative" class="btn btn-secondary">Negativo</button>
         <button id="btnSepia" class="btn btn-secondary">Sepia</button>
@@ -22,26 +35,27 @@
         <button id="btnBlur" class="btn btn-secondary">Blur</button>
         <button id="btnEdge" class="btn btn-secondary">Edge</button>
 
+        <hr class="my-1">
 
-        <div class="d-flex align-items-center gap-2">
-            <label for="brightnessSlider">Brillo</label>
-            <input type="range" id="brightnessSlider" min="-255" max="255" value="0">
+        <div class="d-flex flex-column gap-1">
+            <label for="brightnessSlider" class="form-label mb-0">Brillo</label>
+            <input type="range" id="brightnessSlider" class="form-range" min="-255" max="255" value="0">
             <button id="btnBrightness" class="btn btn-secondary">Aplicar Brillo</button>
         </div>
 
-        <div class="d-flex align-items-center gap-2">
-            <label for="saturationSlider">Saturación</label>
-            <input type="range" id="saturationSlider" min="-100" max="100" value="0">
+        <div class="d-flex flex-column gap-1">
+            <label for="saturationSlider" class="form-label mb-0">Saturación</label>
+            <input type="range" id="saturationSlider" class="form-range" min="-100" max="100" value="0">
             <button id="btnSaturation" class="btn btn-secondary">Aplicar Saturación</button>
         </div>
-
-
     </div>
-    <canvas id="myCanvas" width="800" height="600" style="border: 1px solid black;"></canvas>
 
-    <button id="btnUndo" class="btn btn-secondary">Undo</button>
-    <button id="btnRedo" class="btn btn-secondary">Redo</button>
+    <div class="flex-grow-1 d-flex align-items-center justify-content-center overflow-hidden">
+        <canvas id="myCanvas" width="800" height="600" style="border: 1px solid black;"></canvas>
+    </div>
+
 </div>
+
 <script type="module" src="/src/Main.ts"></script>
 </body>
 </html>
