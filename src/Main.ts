@@ -25,6 +25,7 @@ const btnBlur = document.getElementById("btnBlur") as HTMLButtonElement;
 const btnEdge = document.getElementById("btnEdge") as HTMLButtonElement;
 const btnUndo = document.getElementById("btnUndo") as HTMLButtonElement;
 const btnRedo = document.getElementById("btnRedo") as HTMLButtonElement;
+const btnSave = document.getElementById("btnSave") as HTMLButtonElement;
 const brightnessSlider = document.getElementById("brightnessSlider") as HTMLInputElement;
 const brightnessVal = document.getElementById("brightnessVal") as HTMLElement;
 const btnBrightness = document.getElementById("btnBrightness") as HTMLButtonElement;
@@ -85,4 +86,11 @@ saturationSlider.addEventListener("input", () => {
 
 btnSaturation.addEventListener("click", () => {
     manager.applyFilter(new Saturation(parseInt(saturationSlider.value)));
+});
+
+btnSave.addEventListener("click", () => {
+    const link = document.createElement("a");
+    link.download = crypto.randomUUID() + ".png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
 });
