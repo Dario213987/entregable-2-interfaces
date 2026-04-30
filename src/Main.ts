@@ -8,6 +8,7 @@ import {Saturation} from "./utils/Firlters/Saturation";
 import {Blur} from "./utils/Firlters/Blur";
 import {EdgeDetection} from "./utils/Firlters/EdgeDetection";
 import {HistoryManager} from "./utils/HistoryManger";
+import { HorizontalMirror} from "./utils/Firlters/HorizontalMirror";
 
 // get elements form DOM
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
@@ -24,6 +25,7 @@ const btnSepia = document.getElementById("btnSepia") as HTMLButtonElement;
 const btnBinarization = document.getElementById("btnBinarization") as HTMLButtonElement;
 const btnBlur = document.getElementById("btnBlur") as HTMLButtonElement;
 const btnEdge = document.getElementById("btnEdge") as HTMLButtonElement;
+const btnMirror = document.getElementById("btnMirror") as HTMLButtonElement;
 const btnUndo = document.getElementById("btnUndo") as HTMLButtonElement;
 const btnRedo = document.getElementById("btnRedo") as HTMLButtonElement;
 const btnSave = document.getElementById("btnSave") as HTMLButtonElement;
@@ -77,6 +79,7 @@ btnSepia.addEventListener("click", () => manager.applyFilter(new Sepia()));
 btnBinarization.addEventListener("click", () => manager.applyFilter(new Binarization()));
 btnBlur.addEventListener("click", () => manager.applyFilter(new Blur()));
 btnEdge.addEventListener("click", () => manager.applyFilter(new EdgeDetection()));
+btnMirror.addEventListener("click", () => manager.applyFilter(new HorizontalMirror()));
 
 brightnessSlider.addEventListener("input", () => {
     brightnessVal.textContent = brightnessSlider.value;
