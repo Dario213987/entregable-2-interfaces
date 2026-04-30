@@ -1,6 +1,9 @@
 import { CanvasManager } from "./Interfaces/CanvasManager";
 import { Filter } from "./Firlters/Filter";
-
+/*
+ * Decorator class for a CanvasManagerImpl that adds history suport.
+ * Manages an array with max length 20 that stores the image data of the canvas after an action is made (load image, pencil stoke, filter, etc)
+ */
 export class HistoryManager implements CanvasManager {
     private readonly MAX_HISTORY = 20;
     private history: ImageData[] = [];

@@ -9,6 +9,7 @@ import {Blur} from "./utils/Firlters/Blur";
 import {EdgeDetection} from "./utils/Firlters/EdgeDetection";
 import {HistoryManager} from "./utils/HistoryManger";
 
+// get elements form DOM
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
 const manager = new HistoryManager(new CanvasManagerImpl(canvas), canvas);
 
@@ -33,14 +34,19 @@ const saturationSlider = document.getElementById("saturationSlider") as HTMLInpu
 const saturationVal = document.getElementById("saturationVal") as HTMLElement;
 const btnSaturation = document.getElementById("btnSaturation") as HTMLButtonElement;
 
+// load events
 btnUndo.addEventListener("click", () => manager.undo());
 btnRedo.addEventListener("click", () => manager.redo());
+
+document.addEventListener("keydown", (e) => {
+    if (e.ctrlKey && e.key === "z") manager.undo();
+    if (e.ctrlKey && e.key === "y") manager.redo();
+});
 
 btnPencil.addEventListener("click", () => {
     manager.setColor(colorPicker.value);
     manager.setSize(4);
 });
-
 btnEraser.addEventListener("click", () => {
     manager.setColor("white");
     manager.setSize(20);
@@ -90,20 +96,16 @@ btnSaturation.addEventListener("click", () => {
 
 btnSave.addEventListener("click", () => {
     const link = document.createElement("a");
-    link.download = crypto.randomUUID() + ".png";
+    link.download = crypto.randomUUID() + ".png"; // random uuid in order to not have file, file(1), file(2), etc
     link.href = canvas.toDataURL("image/png");
     link.click();
 });
 
+// set up the pen and eraser pointer when using them. they are not a pen nor an eraser though
 btnPencil.addEventListener('click', () => {
     canvas.dataset.tool = 'pencil';
 });
 
 btnEraser.addEventListener('click', () => {
     canvas.dataset.tool = 'eraser';
-});
-
-document.addEventListener("keydown", (e) => {
-    if (e.ctrlKey && e.key === "z") manager.undo();
-    if (e.ctrlKey && e.key === "y") manager.redo();
 });

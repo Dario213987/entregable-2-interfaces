@@ -2,6 +2,9 @@ import {Pen} from "./utils/Pen";
 import {Filter} from "./utils/Firlters/Filter";
 import {CanvasManager} from "./utils/Interfaces/CanvasManager";
 
+/*
+* CanvasManages implementation that handles pen input, imageDrawing and filter application through a strategy pattern
+* */
 export class CanvasManagerImpl implements CanvasManager{
     private canvas: HTMLCanvasElement;
     private ctx: CanvasRenderingContext2D;
@@ -24,6 +27,7 @@ export class CanvasManagerImpl implements CanvasManager{
         this.initEvents();
     }
 
+    // initialization of canvas related events
     private initEvents(): void {
         this.canvas.addEventListener("mousedown", (e: MouseEvent) => {
             this.isDrawing = true;
@@ -45,6 +49,7 @@ export class CanvasManagerImpl implements CanvasManager{
             this.onStrokeEnd?.();
         });
 
+        // stop drawing when leaving the canvas
         this.canvas.addEventListener("mouseleave", () => {
             this.isDrawing = false;
             this.currentPen = null;
@@ -52,6 +57,8 @@ export class CanvasManagerImpl implements CanvasManager{
     }
 
     drawImage(image: HTMLImageElement): void {
+
+        //scale the image to the canvas size
         const scale = Math.min(
             this.canvas.width / image.width,
             this.canvas.height / image.height
@@ -59,6 +66,8 @@ export class CanvasManagerImpl implements CanvasManager{
 
         const scaledWidth = image.width * scale;
         const scaledHeight = image.height * scale;
+
+        // Center the image on the canvas
         const offsetX = (this.canvas.width - scaledWidth) / 2;
         const offsetY = (this.canvas.height - scaledHeight) / 2;
 
@@ -95,6 +104,8 @@ export class CanvasManagerImpl implements CanvasManager{
         };
     }
 
+
+    // I had to add this callback on order to know whe a pen stroke ends in the HistoryManager decorator class
     private onStrokeEnd: (() => void) | null = null;
 
     setOnStrokeEnd(callback: () => void): void {

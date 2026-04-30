@@ -1,6 +1,7 @@
 import { Filter } from "./Filter";
 
 export class Blur implements Filter {
+    // I made the kernel size a little bit bigger in this one since when using size 3 the blur was too soft
     private readonly KERNEL = [
         [1, 1, 1, 1, 1],
         [1, 1, 1, 1, 1],
